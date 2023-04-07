@@ -27,7 +27,7 @@ app.post("/sing-up", (req, res) => {
     avatar = user.avatar;
     users.push(user);
     isLogged = true;
-    res.send("ok");
+    res.status(200).send("ok");
 })
 
 app.post("/tweets", (req, res) => {
@@ -35,14 +35,14 @@ app.post("/tweets", (req, res) => {
     if (isLogged) {
         const postTweet = { username, tweet, avatar };
         tweetsManage(tweet);
-        res.send("ok");
+        res.status(200).send("ok");
     } else {
-        res.send("UNAUTHORIZED")
+        res.status(401).send("UNAUTHORIZED")
     }
 })
 
 app.get("/tweets", (req, res) => {
-    res.send(lastTweets);
+    res.status(200).send(lastTweets);
 })
 
 
