@@ -22,7 +22,8 @@ function tweetsManage(tweet) {
     }
 }
 
-app.post("/sing-up", (req, res) => {
+app.post("/sign-up", (req, res) => {
+    res.status(200).send("ok");
     const user = req.body;
     avatar = user.avatar;
     users.push(user);
