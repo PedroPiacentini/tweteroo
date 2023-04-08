@@ -8,8 +8,9 @@ app.use(express.json());
 
 const users = []
 const tweets = [];
-const lastTweets = [];
+let lastTweets = [];
 let avatar = "";
+let username = "";
 
 let isLogged = false;
 
@@ -26,16 +27,17 @@ app.post("/sign-up", (req, res) => {
     res.status(200).send("ok");
     const user = req.body;
     avatar = user.avatar;
+    username = user.username;
     users.push(user);
     isLogged = true;
     res.status(200).send("ok");
 })
 
 app.post("/tweets", (req, res) => {
-    const { tweet } = req.body;
+    const tweet = req.body.tweet;
     if (isLogged) {
         const postTweet = { username, tweet, avatar };
-        tweetsManage(tweet);
+        tweetsManage(postTweet);
         res.status(200).send("ok");
     } else {
         res.status(401).send("UNAUTHORIZED")
